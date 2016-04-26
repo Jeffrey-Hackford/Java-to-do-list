@@ -30,6 +30,7 @@ public class App {
       Task newTask = new Task(description);
       tasks.add(newTask);
 
+      model.put("description", description);
       model.put("template", "templates/tasks.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
