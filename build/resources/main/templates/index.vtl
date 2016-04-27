@@ -1,20 +1,3 @@
 <h1>Task list!</h1>
-#if ($tasks)
-  <ul>
-    #foreach ($task in $tasks)
-      <li>$task.getDescription()</li>
-    #end
-  </ul>
-#else
-  <p>No tasks!</p>
-#end
 
-<h3>Add a new task</h3>
-
-<form action="/tasks" method="post">
-  <div class="form-group">
-    <label for="description">Description of Task</label>
-    <input id="description" type="text" name="description" class="form-control">
-  </div>
-  <button type="submit" class="btn">Add New Task</button>
-</form>
+<a href="/tasks/new">Add a new task</a>
