@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CategoryTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-04-28T17:19:54" hostname="epicodus-36.local" time="0.003">
+  <properties/>
+  <testcase name="category_instantiatesCorrectly_true" classname="CategoryTest" time="0.0"/>
+  <testcase name="getTasks_initiallyReturnsEmptyList_ArrayList" classname="CategoryTest" time="0.0"/>
+  <testcase name="find_returnsNullWhenNoCategoryFound_null" classname="CategoryTest" time="0.0"/>
+  <testcase name="all_returnsAllInstancesOfCategory_true" classname="CategoryTest" time="0.0"/>
+  <testcase name="getName_categoryInstantiatesWithName_Home" classname="CategoryTest" time="0.0"/>
+  <testcase name="clear_emptiesAllCategoriesFromList_0" classname="CategoryTest" time="0.0"/>
+  <testcase name="getId_categoriesInstantiateWithAnId_1" classname="CategoryTest" time="0.0"/>
+  <testcase name="find_returnsCategoryWithSameId_secondCategory" classname="CategoryTest" time="0.0"/>
+  <testcase name="addTask_addsTaskToList_true" classname="CategoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

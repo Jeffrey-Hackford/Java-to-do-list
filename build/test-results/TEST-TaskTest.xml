@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TaskTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-04-28T02:44:05" hostname="Gamgee.local" time="0.002">
+<testsuite name="TaskTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-04-28T17:19:54" hostname="epicodus-36.local" time="0.002">
   <properties/>
-  <testcase name="find_returnsNullWhenNoTaskFound_null" classname="TaskTest" time="0.001"/>
+  <testcase name="find_returnsNullWhenNoTaskFound_null" classname="TaskTest" time="0.0"/>
   <testcase name="getId_tasksInstantiateWithAnID_1" classname="TaskTest" time="0.0"/>
   <testcase name="getCreatedAt_instantiatesWithCurrentTime_today" classname="TaskTest" time="0.0"/>
   <testcase name="isCompleted_isFalseAfterInstantiation_false" classname="TaskTest" time="0.0"/>
