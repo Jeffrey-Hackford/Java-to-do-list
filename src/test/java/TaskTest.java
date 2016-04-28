@@ -3,22 +3,29 @@ import static org.junit.Assert.*;
 import java.time.LocalDateTime;
 
 public class TaskTest {
+  @After
+  public void teardown() {
+    Task.clear();
+  }
 
   @Test
   public void Task_instantiatesCorrectly_true() {
     Task myTask = new Task("Mow the lawn");
     assertEquals(true, myTask instanceof Task);
   }
+
   @Test
   public void Task_instantiatesWithDescription_String() {
     Task myTask = new Task("Do a thing");
     assertEquals("Do a thing", myTask.getDescription());
   }
+
   @Test
   public void isCompleted_isFalseAfterInstantiation_false() {
     Task myTask = new Task("Mow the lawn");
     assertEquals(false, myTask.isCompleted());
   }
+
   @Test
   public void getCreatedAt_instantiatesWithCurrentTime_today() {
     Task myTask = new Task("Mow the lawn");
@@ -53,6 +60,7 @@ public class TaskTest {
     Task secondTask = new Task("Buy groceries");
     assertEquals(Task.find(secondTask.getId()), secondTask);
   }
+
   @Test
   public void find_returnsNullWhenNoTaskFound_null() {
     assertTrue(Task.find(999) == null);
