@@ -1,11 +1,21 @@
+import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.time.LocalDateTime;
 
 public class TaskTest {
+
+  @Before
+  public void setUp() {
+    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/to_do_test", null, null);
+  }
+
   @After
   public void teardown() {
-    Task.clear();
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM tasks *;";
+      con.createQuery(sql).executeUpdate();
+    }
   }
 
   @Test
@@ -15,10 +25,22 @@ public class TaskTest {
   }
 
   @Test
-  public void Task_instantiatesWithDescription_String() {
-    Task myTask = new Task("Do a thing");
-    assertEquals("Do a thing", myTask.getDescription());
+  public void getDescription_taskInstantiatesWithDescription_String() {
+    Task myTask = new Task("Mow the lawn");
+    assertEquals("Mow the lawn", myTask.getDescription());
   }
+
+  // @Test
+  // public void Task_instantiatesCorrectly_true() {
+  //   Task myTask = new Task("Mow the lawn");
+  //   assertEquals(true, myTask instanceof Task);
+  // }
+
+  // @Test
+  // public void Task_instantiatesWithDescription_String() {
+  //   Task myTask = new Task("Do a thing");
+  //   assertEquals("Do a thing", myTask.getDescription());
+  // }
 
   @Test
   public void isCompleted_isFalseAfterInstantiation_false() {
