@@ -13,20 +13,22 @@ public class TaskTest {
   @After
   public void teardown() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM tasks *;";
-      con.createQuery(sql).executeUpdate();
+      String deleteTasksQuery = "DELETE FROM tasks *;";
+      String deleteCategoriesQuery = "DELETE FROM categories *;";
+      con.createQuery(deleteTasksQuery).executeUpdate();
+      con.createQuery(deleteCategoriesQuery).executeUpdate();
     }
   }
 
   @Test
   public void Task_instantiatesCorrectly_true() {
-    Task myTask = new Task("Mow the lawn");
+    Task myTask = new Task("Mow the lawn", 1);
     assertEquals(true, myTask instanceof Task);
   }
 
   @Test
   public void getDescription_taskInstantiatesWithDescription_String() {
-    Task myTask = new Task("Mow the lawn");
+    Task myTask = new Task("Mow the lawn", 1);
     assertEquals("Mow the lawn", myTask.getDescription());
   }
 
@@ -37,22 +39,22 @@ public class TaskTest {
 
   @Test
   public void equals_returnsTrueIfDescriptionsAretheSame() {
-    Task firstTask = new Task("Mow the lawn");
-    Task secondTask = new Task("Mow the lawn");
+    Task firstTask = new Task("Mow the lawn", 1);
+    Task secondTask = new Task("Mow the lawn", 1);
     assertTrue(firstTask.equals(secondTask));
 
   }
 
   @Test
   public void save_returnsTrueIfDescriptionsAretheSame() {
-    Task myTask = new Task("Mow the lawn");
+    Task myTask = new Task("Mow the lawn", 1);
     myTask.save();
     assertTrue(Task.all().get(0).equals(myTask));
   }
 
   @Test
   public void save_assignsIdToObject() {
-    Task myTask = new Task("Mow the lawn");
+    Task myTask = new Task("Mow the lawn", 1);
     myTask.save();
     Task savedTask = Task.all().get(0);
     assertEquals(myTask.getId(), savedTask.getId());
@@ -60,11 +62,22 @@ public class TaskTest {
 
   @Test
   public void find_findsTaskInDatabase_true() {
-    Task myTask = new Task("Mow the lawn");
+    Task myTask = new Task("Mow the lawn", 1);
     myTask.save();
     Task savedTask = Task.find(myTask.getId());
     assertTrue(myTask.equals(savedTask));
   }
+
+  @Test
+  public void save_savesCategoryIdIntoDB_true() {
+    Category myCategory = new Category("Household chores");
+    myCategory.save();
+    Task myTask = new Task("Mow the lawn", myCategory.getId());
+    myTask.save();
+    Task savedTask = Task.find(myTask.getId());
+    assertEquals(savedTask.getCategoryId(), myCategory.getId());
+  }
+
 
 
   // @Test
