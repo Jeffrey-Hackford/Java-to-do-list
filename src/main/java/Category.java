@@ -18,24 +18,6 @@ public class Category {
     return id;
   }
 
-  public static List<Category> all() {
-    String sql = "SELECT id, name FROM categories";
-    try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(Category.class);
-    }
-  }
-
-  @Override
-  public boolean equals(Object otherCategory) {
-    if (!(otherCategory instanceof Category)) {
-      return false;
-    } else {
-      Category newCategory = (Category) otherCategory;
-      return this.getName().equals(newCategory.getName()) &&
-             this.getId() == newCategory.getId();
-    }
-  }
-
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO categories(name) VALUES (:name)";
@@ -57,6 +39,24 @@ public class Category {
         con.createQuery(joinDeleteQuery)
           .addParameter("categoryId", this.getId())
           .executeUpdate();
+    }
+  }
+
+  public static List<Category> all() {
+    String sql = "SELECT * FROM categories";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Category.class);
+    }
+  }
+
+  @Override
+  public boolean equals(Object otherCategory) {
+    if (!(otherCategory instanceof Category)) {
+      return false;
+    } else {
+      Category newCategory = (Category) otherCategory;
+      return this.getName().equals(newCategory.getName()) &&
+             this.getId() == newCategory.getId();
     }
   }
 

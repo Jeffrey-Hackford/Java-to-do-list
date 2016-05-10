@@ -83,14 +83,14 @@ public class Task {
 
 
   public void addCategory(Category category) {
-  try(Connection con = DB.sql2o.open()) {
-    String sql = "INSERT INTO categories_tasks (category_id, task_id) VALUES (:category_id, :task_id)";
-    con.createQuery(sql)
-      .addParameter("category_id", category.getId())
-      .addParameter("task_id", this.getId())
-      .executeUpdate();
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO categories_tasks (category_id, task_id) VALUES (:category_id, :task_id)";
+      con.createQuery(sql)
+        .addParameter("category_id", category.getId())
+        .addParameter("task_id", this.getId())
+        .executeUpdate();
+    }
   }
-}
 
   public List<Category> getCategories() {
     try(Connection con = DB.sql2o.open()){
